@@ -1,4 +1,4 @@
 package com.workintech.model;
 
-public class Member {
+public class User  {
 }
