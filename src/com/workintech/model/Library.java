@@ -2,7 +2,6 @@ package com.workintech.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Library {
     private ArrayList librarians;
@@ -38,18 +37,17 @@ public class Library {
         return users;
     }
 
-    public List<Book> getBooks() {
+    public ArrayList getBooks() {
         return books;
     }
 
-    public List<Magazine> getMagazines() {
+    public ArrayList getMagazines() {
         return magazines;
     }
     public List<Book> getBooksByCategory(String categoryName) {
         List<Book> booksInCategory = new ArrayList<>();
         for(Object item : books) {
-            if (item instanceof Book) {
-                Book b = (Book) item;
+            if (item instanceof Book b) {
                 if ((b.getCategory().getName().equalsIgnoreCase(categoryName))){
                     booksInCategory.add(b);
                 }
@@ -57,4 +55,61 @@ public class Library {
         }
         return booksInCategory;
     }
+
+    public Book getBookById(int bookId){
+        for (Object item : books){
+            if(item instanceof Book book){
+                if(book.getId() ==bookId){
+                    return book;
+                }
+            }
+        }
+        return null;
+    }
+
+    public List<Magazine> getMagazinesByCategory(String categoryName) {
+        List<Magazine> magazinesInCategory = new ArrayList<>();
+        for (Object magazine : magazines) {
+            if (magazine instanceof Magazine) {
+                if (((Magazine) magazine).getMagazinename() != null) {
+                    magazinesInCategory.add((Magazine) magazine);
+                }
+            }
+        }
+        return magazinesInCategory;
+    }
+    public List<Book> getBooksByAuthor(String authorName) {
+        List<Book> booksByAuthor = new ArrayList<>();
+        for(Object item : books) {
+            if (item instanceof Book b) {
+                String author = b.getAuthor().getTitle();
+                if ((author.equals(authorName))){
+                    booksByAuthor.add(b);
+                }
+            }
+        }
+        return booksByAuthor;
+    }
+    public Author getAuthorByAuthorName(String authorName) {
+        Author authorInfo = null;
+        for (Object item : authors) {
+            if (item instanceof Author) {
+                authorInfo = (Author) item;
+            }
+        }
+        return authorInfo;
+    }
+    public List<Magazine> getMagazinesByAuthor(String authorName) {
+        List<Magazine> magazinesByAuthor = new ArrayList<>();
+        for (Object magazine : magazines) {
+            if (magazine instanceof Magazine) {
+                if (((Magazine) magazine).getMagazinename() != null) {
+                    magazinesByAuthor.add((Magazine) magazine);
+                }
+            }
+        }
+        return magazinesByAuthor;
+    }
+
+
 }
