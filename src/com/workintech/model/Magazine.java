@@ -5,10 +5,10 @@ public class Magazine extends Item {
     private boolean borrowed;
     private String name;
 
-    public Magazine(int id, String title, Publisher publisher, boolean borrowed, String name) {
+    public Magazine(int id, String title, Publisher publisher) {
         super(id, title);
         this.publisher = publisher;
-        this.borrowed = borrowed;
+        this.borrowed = false;
         this.name = name;
     }
 

@@ -3,7 +3,7 @@ package com.workintech.model;
 import java.util.*;
 
 @SuppressWarnings("ALL")
-public class User  {
+public class User implements Barrowable {
     private String name;
     private int borrowedBooksCount;
     public ArrayList borrowedItems = new ArrayList();
@@ -46,22 +46,9 @@ public ArrayList<Integer> getBorrowedBooks(){
     }
 
 
-    public boolean borrowBook(Book book) {
-         if (!borrowedItems.contains(book) && canBorrow() && balance >= 5.0) {
-            borrowedItems.add(book.getId());
-            borrowedBooksCount++;
-            balance-= 5;
-            return true;
-        }
-        return false;
-    }
 
-    public void borrowMagazine(Magazine magazine) {
-        if (!borrowedItems.contains(magazine) && canBorrow()) {
-            borrowedItems.add(magazine.getId());
-            borrowedBooksCount++;
-        }
-    }
+
+
     public void returnItem(Magazine book) {
         if (borrowedItems.contains(book)) {
             borrowedItems.remove(book);
@@ -82,6 +69,7 @@ public ArrayList<Integer> getBorrowedBooks(){
         fineAmount -= amount;
         System.out.println("Ödenen Ceza Miktarı: " + amount);
     }
+
     public double getTotalFineAmount() {
         return fineAmount;
     }
@@ -102,4 +90,21 @@ public ArrayList<Integer> getBorrowedBooks(){
     public double getFineAmount() {
         return fineAmount;
     }
+@Override
+    public void borrowBook(Book book) {
+        if (!borrowedItems.contains(book) && canBorrow() && balance >= 5.0) {
+            borrowedItems.add(book.getId());
+            borrowedBooksCount++;
+            balance-= 5;
+        }
+}
+@Override
+public void borrowMagazine(Magazine magazine) {
+    if (!borrowedItems.contains(magazine) && canBorrow()) {
+        borrowedItems.add(magazine.getId());
+        borrowedBooksCount++;
+    }
+}
+
+
 }

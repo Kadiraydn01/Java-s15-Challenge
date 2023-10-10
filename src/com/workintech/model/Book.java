@@ -8,14 +8,14 @@ public class Book extends Category {
     private Author author;
     private Category category;
     private boolean borrowed;
-    private int rating;
+    private double rating;
     private String publisher;
     public Book(int id, String name, String publisher) {
         super(name, id);
         this.publisher = publisher;
     }
 
-    public Book(int id, String title, Author author, Category category, boolean borrowed, int rating, String publisher) {
+    public Book(int id, String title, Author author, Category category, boolean borrowed, double rating, String publisher) {
         super(title, id);
         this.author = author;
         this.category = category;
@@ -40,7 +40,7 @@ public class Book extends Category {
         return category;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
@@ -48,7 +48,7 @@ public class Book extends Category {
         return publisher;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
     private ArrayList borrowedItems = new ArrayList();
