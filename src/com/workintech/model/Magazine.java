@@ -33,7 +33,8 @@ public class Magazine extends Item {
         }
     }
 
-    public void returnItem(User user) {
+    public void returnItem(Magazine magazine) {
+        User user = new User();
         if (borrowed && user.magazineHasBorrowed(this)) {
             borrowed = false;
             user.returnItem(this);

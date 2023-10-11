@@ -1,22 +1,23 @@
 package com.workintech.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Book extends Category {
+@SuppressWarnings("ALL")
+public class Book extends Item {
     private int id;
     private Author author;
     private Category category;
     private boolean borrowed;
     private double rating;
     private String publisher;
+    private User owner;
     public Book(int id, String name, String publisher) {
-        super(name, id);
+        super(id, name);
         this.publisher = publisher;
     }
 
     public Book(int id, String title, Author author, Category category, boolean borrowed, double rating, String publisher) {
-        super(title, id);
+        super(id, title);
         this.author = author;
         this.category = category;
         this.borrowed = borrowed;
@@ -51,8 +52,8 @@ public class Book extends Category {
     public void setRating(double rating) {
         this.rating = rating;
     }
-    private ArrayList borrowedItems = new ArrayList();
-    public List<Item> getBorrowedItems() {
+    private final ArrayList borrowedItems = new ArrayList();
+    public ArrayList getBorrowedItems() {
 
         return new ArrayList<>(borrowedItems);
     }
@@ -74,6 +75,7 @@ public class Book extends Category {
             System.out.println("Kitap iade edilmedi." );
         }
     }
+
     public void updateBookInfo(String title , Author author , Category category){
         this.author = author;
         this.category = category;
@@ -90,12 +92,12 @@ public class Book extends Category {
 
     @Override
     public String toString() {
-        return "Kitap: " + getName() + "|" +
-                "Yazar: " + getAuthor().getName() + "|" +
-                "Kategori: " +getCategory().getName() + "|" +
-                "Rating: " + getRating() + "|" +
-                "Id: " + getId() + "|" +
-                "Yayınevi: "+ getPublisher();
+        return  "Id: " + getId() + " | " +
+                " Kitap: " + getName() + " | " +
+                " Yazar: " + getAuthor().getName() + " | " +
+                " Kategori: " +getCategory().getName() + " | " +
+                " Rating: " + getRating() + " | " +
+                " Yayınevi: "+ getPublisher();
 
     }
 }

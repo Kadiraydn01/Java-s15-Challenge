@@ -2,15 +2,15 @@ package com.workintech.model;
 
 public abstract class Item {
     private int id;
-    private String title;
+    private String name;
     private int publisherId;
     private int authorId;
     private String type;
 
 
-    public Item(int id, String title) {
+    public Item(int id, String name) {
         this.id = id;
-        this.title = title;
+        this.name = name;
         this.publisherId = publisherId;
         this.authorId = authorId;
         this.type = type;
@@ -25,11 +25,14 @@ public abstract class Item {
     }
 
     public String getTitle() {
-        return title;
+        return name;
+    }
+    public String getName() {
+        return name;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.name = title;
     }
 
     public int getPublisherId() {

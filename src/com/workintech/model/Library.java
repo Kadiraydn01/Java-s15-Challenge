@@ -3,12 +3,13 @@ package com.workintech.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Library {
-    private ArrayList librarians;
+    private ArrayList<Librarian> librarians;
     private List<User> users;
-    private ArrayList books;
-    private ArrayList authors;
-    private ArrayList magazines;
+    private ArrayList<Book> books;
+    private ArrayList<Author> authors;
+    private ArrayList<Magazine> magazines;
 
     public Library(int id) {
         this.librarians = new ArrayList<>();
@@ -17,8 +18,14 @@ public class Library {
         this.authors =new ArrayList<>();
         this.magazines =new ArrayList<>();
     }
+    public void addUser(User user) {
+        users.add(user);
+    }
     public void addMember(User user){
         users.add(user);
+    }
+    public void addMagazine(Magazine magazine) {
+        magazines.add(magazine);
     }
     public void addLibrarian(Librarian librarian){
         librarians.add(librarian);
@@ -44,6 +51,15 @@ public class Library {
     public ArrayList getMagazines() {
         return magazines;
     }
+    public User getUserByUsernameAndPassword(String name, String password) {
+        for (User user : users) {
+            if (user.getName().equals(name) && user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     public List<Book> getBooksByCategory(String categoryName) {
         List<Book> booksInCategory = new ArrayList<>();
         for(Object item : books) {
