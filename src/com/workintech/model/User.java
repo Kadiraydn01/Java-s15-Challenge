@@ -2,28 +2,24 @@ package com.workintech.model;
 
 import java.util.*;
 
-public class User {
-    private String name;
+public class User extends Person {
+
     private int borrowedBooksCount;
     public List<Item> borrowedItems;
-    private Map<Book, Integer> bookRatings;
-    private double fineAmount;
+    private List<Magazine> borrowedMagazines = new ArrayList<>();
     private double balance;
     private String password;
 
-    public User(String name, String password, double initialBalance) {
-        this.name = name;
+
+    public User(String name,int id,String password, double balance) {
+        super(name, id);
+        this.balance = balance;
         this.password = password;
-        this.borrowedBooksCount = 0;
         this.borrowedItems = new ArrayList<>();
-        this.bookRatings = new HashMap<>();
-        this.fineAmount = 0;
-        this.balance = initialBalance;
+        this.borrowedMagazines = new ArrayList<>();
     }
-    public User(){}
-    public String getName() {
-        return name;
-    }
+
+
 
     public boolean canBorrow() {
         return borrowedBooksCount < 5;
@@ -82,14 +78,35 @@ public class User {
         return balance;
     }
 
-    public void borrowBook(Book book) {
-        if (!bookHasBorrowed(book) && canBorrow() && balance >= 20.0) {
-            borrowedItems.add(book);
-            borrowedBooksCount++;
-            balance -= 20;
+    public void decreaseBalance(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+        } else {
+            System.out.println("Yetersiz bakiye.");
         }
     }
 
+    public int getBorrowedBooksCount() {
+        int bookCount = 0;
+        for (Item item : borrowedItems) {
+            if (item instanceof Book) {
+                bookCount++;
+            }
+        }
+        return bookCount;
+    }
+    public int getBorrowedMagazinesCount() {
+        int bookCount = 0;
+        for (Item item : borrowedItems) {
+            if (item instanceof Magazine) {
+                bookCount++;
+            }
+        }
+        return bookCount;
+    }
+    public void increaseBalance(double amount) {
+        balance += amount;
+    }
     public void borrowMagazine(Magazine magazine) {
         if (!magazineHasBorrowed(magazine) && canBorrow()) {
             borrowedItems.add(magazine);
@@ -97,4 +114,5 @@ public class User {
             balance -= 20;
         }
     }
+
 }

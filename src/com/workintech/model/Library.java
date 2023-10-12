@@ -47,6 +47,13 @@ public class Library {
         return magazines;
     }
 
+    public List<Item> getAllItems() {
+        List<Item> allItems = new ArrayList<>();
+        allItems.addAll(books);
+        allItems.addAll(magazines);
+        return allItems;
+    }
+
     public User getUserByUsernameAndPassword(String name, String password) {
         for (User user : users) {
             if (user.getName().equals(name) && user.getPassword().equals(password)) {
@@ -67,6 +74,29 @@ public class Library {
         }
         return booksInCategory;
     }
+    public int getMagazinesByUserCount(User user) {
+        int count = 0;
+        for (Magazine magazine : user.getBorrowedMagazines()) {
+            if (magazine.isBorrowed()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public Magazine getMagazineById(int magazineId) {
+        for (Magazine magazine : magazines) {
+            if (magazine.getId() == magazineId) {
+                return magazine;
+            }
+        }
+        return null;
+    }
+
+    public void removeMagazine(Magazine magazine) {
+        magazines.remove(magazine);
+    }
+
 
     public Book getBookById(int bookId){
         for (Object item : books){
@@ -83,7 +113,7 @@ public class Library {
         List<Magazine> magazinesInCategory = new ArrayList<>();
         for (Object magazine : magazines) {
             if (magazine instanceof Magazine) {
-                if (((Magazine) magazine).getMagazinename() != null) {
+                if (((Magazine) magazine).getMagazineName() != null) {
                     magazinesInCategory.add((Magazine) magazine);
                 }
             }

@@ -21,6 +21,11 @@ public class Book extends Item {
     }
 
 
+
+    public boolean isBorrowed() {
+        return borrowed;
+    }
+
     @Override
     public int getId() {
         return id;
@@ -48,23 +53,17 @@ public class Book extends Item {
 
 
 
-    public void updateBookInfo(String title , Author author , Category category){
-        this.title= title;
-        this.author = author;
-        this.category = category;
+    public void updateBookInfo(String newTitle , Author newAuthor , Category newCategory){
+        this.title= newTitle;
+        this.author = newAuthor;
+        this.category = newCategory;
     }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
 
 
     @Override
     public String toString() {
         return  "Id: " + getId() + " | " +
-                " Kitap: " + getName() + " | " +
+                " Kitap: " + getTitle() + " | " +
                 " Yazar: " + getAuthor().getName() + " | " +
                 " Kategori: " +getCategory().getName() + " | " +
                 " Rating: " + getRating() + " | " +
