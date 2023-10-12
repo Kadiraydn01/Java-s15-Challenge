@@ -12,9 +12,6 @@ public class Magazine extends Item {
         this.name = name;
     }
 
-    public Publisher getPublisher() {
-        return publisher;
-    }
 
     public boolean isBorrowed() {
         return borrowed;

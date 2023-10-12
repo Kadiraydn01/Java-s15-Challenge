@@ -14,9 +14,7 @@ public class Author extends Item {
         this.id = id;
         authors.add(this);
     }
-    public List<Item> getBorrowedItems() {
-        return null;
-    }
+
 
     public String getName() {
         return name;
@@ -25,9 +23,6 @@ public class Author extends Item {
     @Override
     public int getId() {
         return id;
-    }
-    public static List<Author> getAll() {
-        return authors;
     }
 
     @Override

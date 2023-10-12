@@ -18,9 +18,7 @@ public class Library {
         this.authors =new ArrayList<>();
         this.magazines =new ArrayList<>();
     }
-    public void addUser(User user) {
-        users.add(user);
-    }
+
     public void addMember(User user){
         users.add(user);
     }
@@ -29,9 +27,6 @@ public class Library {
     }
     public void addLibrarian(Librarian librarian){
         librarians.add(librarian);
-    }
-    public Author getAuthorById(int authorId){
-        return (Author) authors.get(authorId);
     }
     public void addBook(Book book){
         books.add(book);
@@ -51,6 +46,7 @@ public class Library {
     public ArrayList getMagazines() {
         return magazines;
     }
+
     public User getUserByUsernameAndPassword(String name, String password) {
         for (User user : users) {
             if (user.getName().equals(name) && user.getPassword().equals(password)) {
@@ -115,17 +111,15 @@ public class Library {
         }
         return authorInfo;
     }
-    public List<Magazine> getMagazinesByAuthor(String authorName) {
-        List<Magazine> magazinesByAuthor = new ArrayList<>();
-        for (Object magazine : magazines) {
-            if (magazine instanceof Magazine) {
-                if (((Magazine) magazine).getMagazinename() != null) {
-                    magazinesByAuthor.add((Magazine) magazine);
-                }
-            }
-        }
-        return magazinesByAuthor;
+
+    @Override
+    public String toString() {
+        return "Library{" +
+                "librarians=" + librarians +
+                ", users=" + users +
+                ", books=" + books +
+                ", authors=" + authors +
+                ", magazines=" + magazines +
+                '}';
     }
-
-
 }

@@ -73,6 +73,7 @@ public class Main {
             return;
 
         }
+
             System.out.println("Hoşgeldiniz " + currentUser.getName()+"! " +"Bakiyeniz: " + currentUser.getBalance() + "Lütfen yapmak istediğiniz işlemi seçiniz");
                 while (true){
                     System.out.println("1. Kitapları Listele");

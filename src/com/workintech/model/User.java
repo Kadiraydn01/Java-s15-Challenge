@@ -20,9 +20,7 @@ public class User {
         this.fineAmount = 0;
         this.balance = initialBalance;
     }
-public User(){
-
-}
+    public User(){}
     public String getName() {
         return name;
     }
@@ -50,25 +48,6 @@ public User(){
             borrowedItems.remove(item);
             borrowedBooksCount--;
         }
-    }
-
-    public int getRating(Book book) {
-        return bookRatings.getOrDefault(book, 0);
-    }
-
-    public void rateBook(Book book, int rating) {
-        if (rating >= 0 && rating <= 5) {
-            bookRatings.put(book, rating);
-        }
-    }
-
-    public void payFine(double amount) {
-        fineAmount -= amount;
-        System.out.println("Ödenen Ceza Miktarı: " + amount);
-    }
-
-    public double getTotalFineAmount() {
-        return fineAmount;
     }
 
     public boolean bookHasBorrowed(Book book) {
