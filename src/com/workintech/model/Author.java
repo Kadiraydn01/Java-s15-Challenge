@@ -16,8 +16,6 @@ public class Author extends Person {
         authors.add(this);
     }
 
-
-
     public String getName() {
         return name;
     }
@@ -27,16 +25,14 @@ public class Author extends Person {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return getName();
-    }
+
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public String toString() {
+        return getName();
     }
 }

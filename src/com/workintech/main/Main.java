@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         Librarian librarian = new Librarian("Kadir" , 1);
-        Library library = new Library(1);
+        Library library = new Library();
         library.addLibrarian(librarian);
         Author author1 = new Author("William Shakespeare" ,1);
         Author author2 = new Author("Fyodor Dostoevsky" ,2);
@@ -22,7 +22,7 @@ public class Main {
         Category category2 = new Category("Şiir");
         Category category3 = new Category("Tarihi");
 
-        System.out.println(category3.getName());
+
         Publisher publisher1 = new Publisher(1, "Yayınevi", "Can Yayınları");
         Publisher publisher2 = new Publisher(2, "Yayınevi", "Sancak Grup");
 
@@ -169,7 +169,7 @@ public class Main {
                 user.returnItem(book);
                 library.addBook((Book) book);
                 user.increaseBalance(15);
-                System.out.println(((Book) book).getName() + " kitabı iade edildi. Kalan Bakiyeniz: " + user.getBalance());
+              System.out.println(((Book) book).getName() + " kitabı iade edildi. Kalan Bakiyeniz: " + user.getBalance());
             }else {
                 System.out.println("Geçersiz seçenek veya kitap kullanıcıya ait değil.");
             }
@@ -199,7 +199,7 @@ public class Main {
             if (magazine instanceof Magazine && user.magazineHasBorrowed((Magazine) magazine)) {
                 user.returnItem(magazine);
                 library.addMagazine(magazine);
-                user.increaseBalance(10);  // Dergilerin iadesi için belirlediğiniz farklı bir miktarı kullanabilirsiniz.
+                user.increaseBalance(10);
                 System.out.println(magazine.getTitle() + " dergisi iade edildi. Kalan Bakiyeniz: " + user.getBalance());
             } else {
                 System.out.println("Geçersiz seçenek veya dergi kullanıcıya ait değil.");
@@ -246,9 +246,9 @@ public class Main {
         Magazine magazine = library.getMagazineById(magazineId);
 
         if (magazine != null) {
-            if (user.canBorrow() && user.getBalance() >= 10) {
+            if (user.canBorrow() && user.getBalance() >= 15) {
                 user.borrowMagazine(magazine);
-                user.decreaseBalance(10);
+                user.decreaseBalance(15);
                 System.out.println(magazine.getTitle() + " dergisi ödünç alındı. Kalan Bakiyeniz: " + user.getBalance());
             } else {
                 System.out.println("Ödünç alınamadı. Bakiyeniz yetersiz!");

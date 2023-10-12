@@ -2,7 +2,7 @@
 package com.workintech.model;
 
 public interface Barrowable {
-void borrowBook(Book book);
+boolean bookHasBorrowed(Book book);
 void borrowMagazine(Magazine magazine);
 
 }

@@ -2,7 +2,6 @@ package com.workintech.model;
 
 public class Publisher extends Item{
     private String name;
-
     public Publisher(int id, String title, String name) {
         super(id, title);
         this.name = name;
@@ -10,5 +9,12 @@ public class Publisher extends Item{
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

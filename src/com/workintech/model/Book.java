@@ -21,11 +21,6 @@ public class Book extends Item {
     }
 
 
-
-    public boolean isBorrowed() {
-        return borrowed;
-    }
-
     @Override
     public int getId() {
         return id;

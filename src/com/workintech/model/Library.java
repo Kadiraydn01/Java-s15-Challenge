@@ -11,7 +11,7 @@ public class Library {
     private ArrayList<Author> authors;
     private ArrayList<Magazine> magazines;
 
-    public Library(int id) {
+    public Library() {
         this.librarians = new ArrayList<>();
         this.users = new ArrayList<>();
         this.books =new ArrayList<>();
@@ -74,15 +74,7 @@ public class Library {
         }
         return booksInCategory;
     }
-    public int getMagazinesByUserCount(User user) {
-        int count = 0;
-        for (Magazine magazine : user.getBorrowedMagazines()) {
-            if (magazine.isBorrowed()) {
-                count++;
-            }
-        }
-        return count;
-    }
+    //equalsIgnoreCase = Küçük harflere çevirip karışıklığı önler.
 
     public Magazine getMagazineById(int magazineId) {
         for (Magazine magazine : magazines) {
@@ -92,11 +84,6 @@ public class Library {
         }
         return null;
     }
-
-    public void removeMagazine(Magazine magazine) {
-        magazines.remove(magazine);
-    }
-
 
     public Book getBookById(int bookId){
         for (Object item : books){
@@ -122,16 +109,20 @@ public class Library {
     }
     public List<Book> getBooksByAuthor(String authorName) {
         List<Book> booksByAuthor = new ArrayList<>();
-        for(Object item : books) {
-            if (item instanceof Book b) {
-                String author = b.getAuthor().getTitle();
-                if ((author.equals(authorName))){
-                    booksByAuthor.add(b);
+        for (Object item : books) {
+            if (item instanceof Book) {
+                Book book = (Book) item;
+                if (book.getAuthor() != null && book.getAuthor().getTitle() != null) {
+                    String bookAuthorName = book.getAuthor().getTitle();
+                    if (bookAuthorName.equals(authorName)) {
+                        booksByAuthor.add(book);
+                    }
                 }
             }
         }
         return booksByAuthor;
     }
+
     public Author getAuthorByAuthorName(String authorName) {
         Author authorInfo = null;
         for (Object item : authors) {

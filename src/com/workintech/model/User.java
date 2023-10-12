@@ -2,11 +2,11 @@ package com.workintech.model;
 
 import java.util.*;
 
-public class User extends Person {
+public class User extends Person implements Barrowable {
 
     private int borrowedBooksCount;
     public List<Item> borrowedItems;
-    private List<Magazine> borrowedMagazines = new ArrayList<>();
+    private List<Magazine> borrowedMagazines;
     private double balance;
     private String password;
 
@@ -111,8 +111,18 @@ public class User extends Person {
         if (!magazineHasBorrowed(magazine) && canBorrow()) {
             borrowedItems.add(magazine);
             borrowedBooksCount++;
-            balance -= 20;
+
         }
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "borrowedBooksCount=" + borrowedBooksCount +
+                ", borrowedItems=" + borrowedItems +
+                ", borrowedMagazines=" + borrowedMagazines +
+                ", balance=" + balance +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
