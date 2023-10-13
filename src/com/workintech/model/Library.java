@@ -34,7 +34,9 @@ public class Library {
     public void removeBook(Book book){
         books.remove(book);
     }
-
+    public void removeMagazine(Magazine magazine){
+        magazines.remove(magazine);
+    }
     public List<User> getUsers() {
         return users;
     }

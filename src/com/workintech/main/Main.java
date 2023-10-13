@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-@SuppressWarnings("ALL")
+
 public class Main {
     public static void main(String[] args) {
 
@@ -139,8 +139,7 @@ public class Main {
 
         for (int i = 0; i < borrowedItem.size(); i++){
             Object item = borrowedItem.get(i);
-            if (item instanceof Book){
-                Book book = (Book) item;
+            if (item instanceof Book book){
                 System.out.println((i + 1) + ". " + book.getName());
             }
         }
@@ -150,7 +149,7 @@ public class Main {
 
         if(bookNumber >=1 && bookNumber <= borrowedItem.size()){
             Book book = (Book) borrowedItem.get(bookNumber -1 );
-            if (book instanceof Book && user.bookHasBorrowed((Book) book)) {
+            if ((book != null) && user.bookHasBorrowed(book)) {
                 System.out.print("Kitaba puan vermek istiyor musunuz ? (Evet/Hayır) : ");
                 String ratingChoice = scanner.nextLine();
 
@@ -167,9 +166,9 @@ public class Main {
                     }
                 }
                 user.returnItem(book);
-                library.addBook((Book) book);
+                library.addBook(book);
                 user.increaseBalance(15);
-              System.out.println(((Book) book).getName() + " kitabı iade edildi. Kalan Bakiyeniz: " + user.getBalance());
+              System.out.println((book).getName() + " kitabı iade edildi. Kalan Bakiyeniz: " + user.getBalance());
             }else {
                 System.out.println("Geçersiz seçenek veya kitap kullanıcıya ait değil.");
             }
@@ -184,8 +183,7 @@ public class Main {
 
         for (int i = 0; i < borrowedItems.size(); i++) {
             Object item = borrowedItems.get(i);
-            if (item instanceof Magazine) {
-                Magazine magazine = (Magazine) item;
+            if (item instanceof Magazine magazine) {
                 System.out.println((i + 1) + ". " + magazine.getTitle());
             }
         }
@@ -196,7 +194,7 @@ public class Main {
 
         if (magazineNumber >= 1 && magazineNumber <= borrowedItems.size()) {
             Magazine magazine = (Magazine) borrowedItems.get(magazineNumber - 1);
-            if (magazine instanceof Magazine && user.magazineHasBorrowed((Magazine) magazine)) {
+            if (magazine != null && user.magazineHasBorrowed(magazine)) {
                 user.returnItem(magazine);
                 library.addMagazine(magazine);
                 user.increaseBalance(10);
@@ -248,6 +246,7 @@ public class Main {
         if (magazine != null) {
             if (user.canBorrow() && user.getBalance() >= 15) {
                 user.borrowMagazine(magazine);
+                library.removeMagazine(magazine);
                 user.decreaseBalance(15);
                 System.out.println(magazine.getTitle() + " dergisi ödünç alındı. Kalan Bakiyeniz: " + user.getBalance());
             } else {
@@ -263,10 +262,10 @@ public class Main {
         int bookID = scanner.nextInt() - 1;
         scanner.nextLine();
 
-        List<Book> books = library.getBooks();
+        ArrayList books = library.getBooks();
 
         if (bookID >= 0 && bookID < books.size()) {
-            Book book = books.get(bookID);
+            Book book = (Book) books.get(bookID);
 
             if (!user.bookHasBorrowed(book)) {
                 System.out.print("Yeni başlık: ");
@@ -309,15 +308,7 @@ public class Main {
         System.out.println();
     }
 }
-    public static List<Book> getBooksByAuthorId(int authorId, List<Book> bookList) {
-        List<Book> result = new ArrayList<>();
-        for (Book book : bookList) {
-            if (book.getAuthor().equals(authorId)) {
-                result.add(book);
-            }
-        }
-        return result;
-    }
+
 public static void listBooksByCategory(Library library,Scanner scanner){
     System.out.print("Kategori adını giriniz: ");
     String categoryName = scanner.nextLine();
@@ -333,12 +324,7 @@ public static void listBooksByCategory(Library library,Scanner scanner){
 
     }
 }
-private static void listMagazines(Library library){
-    System.out.println("Kütüphaneki dergiler: ");
-    for (Object magazine : library.getMagazines()){
-        System.out.println();
-    }
-}
+
     public static void addBook(Library library, Book book) {
         library.addBook(book);
         System.out.println(book.getName() + " kütüphaneye eklendi.");

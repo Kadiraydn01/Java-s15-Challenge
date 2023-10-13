@@ -2,7 +2,7 @@ package com.workintech.model;
 
 import java.util.*;
 
-public class User extends Person implements Barrowable {
+public class User extends Person implements Borrowable {
 
     private int borrowedBooksCount;
     public List<Item> borrowedItems;
@@ -31,7 +31,7 @@ public class User extends Person implements Barrowable {
 
     public List<Magazine> getBorrowedMagazines() {
         List<Magazine> magazines = new ArrayList<>();
-        for (Item item : borrowedItems) {
+        for (Item item : borrowedMagazines) {
             if (item instanceof Magazine) {
                 magazines.add((Magazine) item);
             }
