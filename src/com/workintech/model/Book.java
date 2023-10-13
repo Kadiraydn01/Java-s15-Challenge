@@ -7,7 +7,7 @@ public class Book extends Item {
     private Category category;
     private boolean borrowed;
     private double rating;
-    private final String publisher;
+    private String publisher;
 
     public Book(int id, String title, Author author, Category category, boolean borrowed, double rating, String publisher) {
         super(id, title);

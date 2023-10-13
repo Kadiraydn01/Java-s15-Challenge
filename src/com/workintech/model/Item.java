@@ -2,7 +2,7 @@ package com.workintech.model;
 
 public abstract class Item {
     private int id;
-    private final String name;
+    private String name;
 
 
     public Item(int id, String name) {

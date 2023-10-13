@@ -57,8 +57,6 @@ public class Main {
         String userName = scanner.nextLine();
         System.out.println("Şifrenizi Giriniz: ");
         String password = scanner.next();
-        System.out.println("Kullanıcı Adı: " + userName);
-        System.out.println("Şifre: " + password);
 
         scanner.nextLine();
 
@@ -76,7 +74,7 @@ public class Main {
 
         }
 
-            System.out.println("Hoşgeldiniz " + currentUser.getName()+"! " +"Bakiyeniz: " + currentUser.getBalance() + "Lütfen yapmak istediğiniz işlemi seçiniz");
+        System.out.println("Hoşgeldiniz " + currentUser.getName()+"! " +"Bakiyeniz: " + currentUser.getBalance() + "Lütfen yapmak istediğiniz işlemi seçiniz");
                 while (true){
                     System.out.println("1. Kitapları Listele");
                     System.out.println("2. Kitap Al");
